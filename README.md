@@ -121,5 +121,3 @@ VLA-73 forma parte del ecosistema **Vitalab Audio** y de mi transición profesio
 ## Licencia
 
 © 2026 Sergio Devece · Vitalab Audio. Todos los derechos reservados.
-
-> *Si quieres abrirlo a la comunidad, una licencia MIT es una buena opción para portfolio. Sustituye esta sección por el texto de la licencia que elijas y añade un archivo `LICENSE`.*
