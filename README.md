@@ -1,123 +1,103 @@
 # VITALAB AUDIO · VLA-73 Mastering Analyzer
 
-> Analizador de masterización **local, en un solo archivo HTML y sin dependencias**, con estética de hardware vintage tipo módulo Neve.
-> Mide tu mezcla/máster, te da referencias por destino (streaming, CD, vinilo) y genera un informe PDF — todo en el navegador, sin subir tu audio a ningún sitio.
+**VLA-73 Mastering Analyzer** es una herramienta web de análisis orientativo de mezcla y mastering, creada dentro de la línea **Vitalab Audio**.
 
-![single file](https://img.shields.io/badge/build-single--file_HTML-49e08a)
-![dependencies](https://img.shields.io/badge/dependencies-0-blue)
-![vanilla js](https://img.shields.io/badge/stack-vanilla_JS-ffae47)
-![offline](https://img.shields.io/badge/offline-100%25-b23b30)
+La aplicación permite cargar un archivo de audio, analizar métricas técnicas relevantes y visualizar medidores inspirados en hardware vintage de estudio, todo desde el navegador.
 
-*Hecho para ti, no para todos.* — **Vitalab Audio**
+## Demo online
 
----
+[Probar VLA-73 en Netlify](https://vla-73-mastering-vitalab-audio.netlify.app/)
 
-## ¿Qué es?
+## Qué es
 
-VLA-73 es una herramienta **orientativa de pre-mastering**. Carga un archivo de audio y, en local, te muestra medidores analógicos en tiempo real, un análisis técnico completo del programa y recomendaciones de entrega para las principales plataformas. Está pensada como pieza de portfolio y laboratorio técnico, no como medidor certificado de estudio.
+VLA-73 es una herramienta de pre-mastering y revisión técnica. Está pensada como proyecto de portfolio, laboratorio de aprendizaje y puente entre experiencia profesional en audio y desarrollo web.
 
-Todo el procesamiento ocurre en tu navegador con la **Web Audio API**. El audio nunca sale de tu equipo.
+No pretende sustituir un sistema profesional certificado de medición ni una escucha crítica en sala calibrada. Su objetivo es ofrecer una guía visual y técnica útil para detectar posibles problemas y orientar decisiones de entrega.
 
----
+## Funcionalidades principales
 
-## Características
+- Carga local de archivos de audio.
+- Análisis técnico del archivo completo.
+- Medición de Sample Peak, RMS y loudness integrado.
+- Estimación de LRA, PLR y factor de cresta.
+- Detección de DC offset y clipping.
+- Correlación de fase global.
+- Correlación de graves para orientación en vinilo.
+- VU meters por canal con estética analógica.
+- Goniómetro / visualizador estéreo.
+- Analizador de espectro.
+- Recomendaciones por destino de entrega.
+- Generación de informe PDF.
 
-**Medición offline (sobre el archivo completo)**
-- **Sample Peak** (dBFS)
-- **RMS** (dBFS)
-- **LUFS integrado** — K-weighting + gating según **ITU-R BS.1770-4** (coeficientes recalculados a la frecuencia de muestreo real)
-- **LRA** (Loudness Range) según **EBU Tech 3342**
-- **Correlación de fase** global y **correlación de graves (<150 Hz)** para compatibilidad de vinilo
-- **PLR** (Peak-to-Loudness Ratio) y **factor de cresta**
-- **DC offset** y **detección de clipping** por muestras consecutivas
+## Demo y uso
 
-**Medidores en tiempo real durante la reproducción**
-- **VU de aguja** estilo Neve por canal (0 VU = −18 dBFS)
-- **Aguja de correlación / fase**
-- **Goniómetro** (Lissajous mid/side, fósforo verde)
-- **Analizador de espectro** logarítmico (20 Hz – 20 kHz)
-- **Espectro promedio offline** visible tras el análisis, sin necesidad de pulsar Play
+1. Abre la [demo online](https://vla-73-mastering-vitalab-audio.netlify.app/).
+2. Pulsa **Cargar audio**.
+3. Selecciona un archivo compatible.
+4. Revisa las métricas del análisis.
+5. Usa la reproducción para ver los medidores en movimiento.
+6. Genera el informe PDF si necesitas documentar la revisión.
 
-**Recomendaciones por destino**
-Referencias de loudness y techo true-peak, con el ajuste de ganancia exacto para acercarte a cada una:
-CD (Red Book) · Spotify · Apple Music / iTunes · YouTube · Tidal / Amazon · Bandcamp / SoundCloud · Vinilo.
+Formatos recomendados: **WAV** y **AIFF**. Otros formatos dependen del soporte del navegador.
 
-**Informe PDF**
-Generador de PDF **propio, sin librerías externas** (texto Helvetica/WinAnsi, formas vectoriales y gráficos embebidos como JPEG/DCTDecode). Produce un informe de cliente/prensado con mediciones, diagnóstico, tabla de referencias y una página con el espectro promedio y el goniómetro.
+## Tecnologías utilizadas
 
----
+- HTML
+- CSS
+- JavaScript
+- Web Audio API
+- Canvas 2D
+- Procesamiento de audio en navegador
+- Generación de PDF desde JavaScript
+- Netlify para despliegue online
 
-## Cómo se usa
+## Estructura del proyecto
 
-1. Abre `vitalab-audio-mastering.html` en un navegador moderno.
-2. Pulsa **Cargar audio** y elige tu archivo.
-3. Al terminar el análisis verás las métricas, el espectro promedio y las recomendaciones.
-4. Pulsa **Play** para ver los medidores en movimiento (VU, fase, goniómetro, espectro).
-5. Pulsa **Informe PDF** para descargar el informe.
-
-Formatos recomendados: **WAV / AIFF** (decodificación segura en cualquier navegador). MP3 / M4A / FLAC dependen del soporte del navegador.
-
----
-
-## Despliegue
-
-Es un único archivo estático. No requiere build, servidor ni instalación.
-
-- **Local:** doble clic sobre el `.html`.
-- **GitHub Pages / Netlify / Vercel:** sube el archivo y listo. En Netlify basta con arrastrar la carpeta.
-
-```
-/
-└── vitalab-audio-mastering.html   ← toda la app
-└── README.md
+```txt
+vla73-vitalab-audio-mastering-analizer/
+├── README.md
+├── index.html
+└── vitalab-audio-mastering.html
 ```
 
----
+`index.html` funciona como entrada estándar del proyecto.  
+`vitalab-audio-mastering.html` conserva la aplicación principal completa.
 
-## Tecnología
+## Enfoque Vitalab Audio
 
-- **Vanilla JavaScript** — sin frameworks ni dependencias.
-- **Web Audio API** — decodificación, reproducción y análisis.
-- **Canvas 2D** — medidores, agujas y pantallas dibujados a mano.
-- **FFT radix-2 propia** — para el espectro promedio offline.
-- **Motor de PDF propio** — escribe el PDF a nivel de bytes (xref, objetos, streams), con fuentes estándar e imágenes DCTDecode.
+Este proyecto une dos mundos:
 
-Sin CDN, sin red, sin telemetría. Cero dependencias en `package.json` porque no hay `package.json`.
+- experiencia real en producción, mezcla y mastering;
+- aprendizaje y desarrollo de herramientas web.
 
----
+La intención no es crear una app genérica de audio, sino una herramienta con criterio musical, estética propia y utilidad práctica dentro del ecosistema **Vitalab Audio**.
 
-## Limitaciones (honestidad técnica)
+## Honestidad técnica
 
-VLA-73 es una guía técnica y musical, **no un sustituto de un medidor profesional certificado ni de una escucha crítica en entorno calibrado**.
+VLA-73 es una herramienta orientativa.
 
-- **Sample Peak, no True Peak.** El medidor de pico trabaja por muestra. El *true peak* real (inter-sample) requiere oversampling y está marcado como *pendiente* (fase 2). Los techos true-peak que ves son **recomendaciones de entrega**, no una medición interna.
-- **Las referencias de loudness son orientativas**, no leyes. El objetivo es traducción, dinámica y ausencia de problemas técnicos, no perseguir un número.
-- **Decodificación según navegador:** WAV/AIFF van seguros; otros formatos dependen del códec del navegador.
-- **iOS / Safari:** la descarga del PDF puede abrir la hoja de compartir o una pestaña nueva en lugar de descargar directamente. Es comportamiento del sistema.
-- **Análisis síncrono:** archivos muy largos pueden congelar la interfaz un instante (el paso a Web Worker está en el roadmap).
-
----
+- No sustituye un medidor profesional certificado.
+- Las referencias de loudness deben entenderse como guías, no como reglas absolutas.
+- La medición de true peak validada por oversampling queda como mejora futura.
+- El comportamiento puede variar según navegador y formato de archivo.
+- Archivos muy largos pueden requerir más tiempo de análisis.
 
 ## Roadmap
 
-| Versión | Objetivo | Incluye |
-|---|---|---|
-| **v1.1** ✅ | Corrección técnica y honestidad | LUFS mono correcto, Sample Peak separado de True Peak, espectro offline visible, PLR / crest / DC offset / clipping, textos honestos, aviso orientativo |
-| v1.2 | Diagnóstico musical | Mejoras de informe, refinado de umbrales |
-| v2.0 (DAM) | Arquitectura | Modularización, Web Worker (análisis no bloqueante), tests |
-| Pro | Vitalab Audio | True Peak validado por oversampling, comparador A/B, presets, informes cliente/técnico |
+| Fase | Objetivo |
+|---|---|
+| v1 | Herramienta funcional de análisis y visualización |
+| v1.1 | Correcciones técnicas, métricas más claras y documentación honesta |
+| v1.2 | Mejoras de diagnóstico e informe |
+| v2.0 | Modularización, Web Worker y tests durante DAM |
+| Pro | True Peak avanzado, comparador A/B, presets e informes profesionales |
 
----
+## Estado del proyecto
 
-## Sobre el proyecto
+Proyecto funcional, desplegado online y en evolución.
 
-VLA-73 forma parte del ecosistema **Vitalab Audio** y de mi transición profesional hacia el desarrollo de software (DAM). Une conocimiento real de audio y criterio de mastering con programación web, construido de forma iterativa y validado de forma cruzada antes de cada cambio.
+## Autor
 
-**Autor:** Sergio Devece — Vitalab Audio
-**Diseño y desarrollo:** Designed by Sergio Devece_Vitalab Audio
+Proyecto creado por **Sergio Devece** dentro de **Vitalab Audio**.
 
----
-
-## Licencia
-
-© 2026 Sergio Devece · Vitalab Audio. Todos los derechos reservados.
+© 2026 Sergio Devece · Vitalab Audio.
