@@ -21,6 +21,7 @@ No pretende sustituir un sistema profesional certificado de medición ni una esc
 - Carga local de archivos de audio.
 - Análisis técnico del archivo completo.
 - Medición de Sample Peak, RMS y loudness integrado.
+- Detección automática de archivos mono/dual mono para evitar errores de medición LUFS por doble conteo de energía.
 - Estimación de LRA, PLR y factor de cresta.
 - Detección de DC offset y clipping.
 - Correlación de fase global.
@@ -29,7 +30,7 @@ No pretende sustituir un sistema profesional certificado de medición ni una esc
 - Goniómetro / visualizador estéreo.
 - Analizador de espectro.
 - Recomendaciones por destino de entrega.
-- Botón Mono para comprobar compatibilidad y cancelaciones de fase.
+- Escucha en mono para detectar cancelaciones de fase y problemas de compatibilidad.
 - Generación de informe PDF.
 
 ## Demo y uso
@@ -82,11 +83,13 @@ El proyecto avanza en iteraciones pequeñas y verificables, conservando estétic
   - Monitorado mono persistente tras Stop, como un botón de consola.
   - Ruta de salida de audio gobernada por el estado mono.
   - Detección de mono real por energía Side/Mid en lugar de solo correlación.
+  - Corrección del cálculo LUFS en archivos mono/dual mono para evitar doble conteo de energía.
   - Mensajes coherentes entre interfaz e informe PDF: True Peak marcado como **N/A (fase 2)**.
 - **v3 (actual)** — versión revisada y testada sobre Netlify, promovida como referencia funcional actual:
   - Mantiene la base robusta de v2.1.
   - Mejora legibilidad de recomendaciones y métricas.
   - Consolida el botón Mono dentro del flujo principal de uso.
+  - Explicita la detección mono/dual mono y el cálculo LUFS corregido como parte del diagnóstico técnico.
   - Deja documentada la separación entre Sample Peak medido y True Peak pendiente de fase futura.
   - Mantiene enfoque local, estático y sin dependencias.
 
