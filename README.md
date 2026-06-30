@@ -6,7 +6,9 @@ La aplicación permite cargar un archivo de audio, analizar métricas técnicas 
 
 ## Demo online
 
-[Probar VLA-73 en Netlify](https://vla-73-mastering-vitalab-audio.netlify.app/)
+[Probar VLA-73 v3 en Netlify](https://vla-73-mastering-vitalab-audio-v3.netlify.app/)
+
+Demo histórica anterior: [VLA-73 en Netlify](https://vla-73-mastering-vitalab-audio.netlify.app/)
 
 ## Qué es
 
@@ -27,16 +29,18 @@ No pretende sustituir un sistema profesional certificado de medición ni una esc
 - Goniómetro / visualizador estéreo.
 - Analizador de espectro.
 - Recomendaciones por destino de entrega.
+- Botón Mono para comprobar compatibilidad y cancelaciones de fase.
 - Generación de informe PDF.
 
 ## Demo y uso
 
-1. Abre la [demo online](https://vla-73-mastering-vitalab-audio.netlify.app/).
+1. Abre la [demo online v3](https://vla-73-mastering-vitalab-audio-v3.netlify.app/).
 2. Pulsa **Cargar audio**.
 3. Selecciona un archivo compatible.
 4. Revisa las métricas del análisis.
 5. Usa la reproducción para ver los medidores en movimiento.
-6. Genera el informe PDF si necesitas documentar la revisión.
+6. Usa **Mono** para comprobar compatibilidad de fase.
+7. Genera el informe PDF si necesitas documentar la revisión.
 
 Formatos recomendados: **WAV** y **AIFF**. Otros formatos dependen del soporte del navegador.
 
@@ -58,27 +62,35 @@ vla73-vitalab-audio-mastering-analizer/
 ├── README.md
 ├── index.html
 ├── vitalab-audio-mastering.html
-└── vitalab-audio-mastering-v2.1.html
+├── vitalab-audio-mastering-v2.1.html
+└── vitalab-audio-mastering-v3.html
 ```
 
-- `index.html` funciona como entrada estándar del proyecto y es la versión que sirve la demo online.
-- `vitalab-audio-mastering.html` conserva la aplicación principal completa (versión publicada).
-- `vitalab-audio-mastering-v2.1.html` es una **iteración de estabilización en pruebas** (ver *Versiones*). Convive con la versión publicada y no la sustituye todavía.
+- `index.html` funciona como entrada estándar del proyecto original.
+- `vitalab-audio-mastering.html` conserva la aplicación principal completa de la primera versión publicada.
+- `vitalab-audio-mastering-v2.1.html` conserva la iteración de estabilización previa.
+- `vitalab-audio-mastering-v3.html` es la versión revisada, testada y promovida como referencia actual del proyecto.
 
 ## Versiones
 
 El proyecto avanza en iteraciones pequeñas y verificables, conservando estética y estructura.
 
-- **Publicada** — la app servida por la demo (`index.html`). Es la referencia estable de cara al visitante.
-- **v2.1 (estabilización, en pruebas)** — `vitalab-audio-mastering-v2.1.html`. Pasada de robustez sobre la máquina de estados, sin añadir features mayores:
-  - Reset completo de estado al cargar un archivo nuevo o si falla la decodificación: no quedan medición ni buffer del archivo anterior.
-  - Botón Mono rehecho: comportamiento determinista desde parado, durante reproducción y tras pausa/stop, sin salida duplicada ni subidas de nivel inesperadas.
+- **v1 / publicada original** — primera versión funcional de la herramienta.
+- **v2.1 (estabilización)** — pasada de robustez sobre la máquina de estados, sin añadir features mayores:
+  - Reset completo de estado al cargar un archivo nuevo o si falla la decodificación.
+  - Botón Mono rehecho: comportamiento determinista desde parado, durante reproducción y tras pausa/stop.
   - Monitorado mono persistente tras Stop, como un botón de consola.
-  - Ruta de salida de audio gobernada por el estado mono: ya no se conecta siempre directa al destino.
-  - Detección de mono real por energía Side/Mid en lugar de solo correlación, para no confundir estéreo estrecho ni canales idénticos a distinto nivel con dual mono.
-  - Mensajes coherentes entre interfaz e informe PDF: True Peak marcado como **N/A (fase 2)**; los techos true-peak son recomendaciones de entrega, no medición interna.
+  - Ruta de salida de audio gobernada por el estado mono.
+  - Detección de mono real por energía Side/Mid en lugar de solo correlación.
+  - Mensajes coherentes entre interfaz e informe PDF: True Peak marcado como **N/A (fase 2)**.
+- **v3 (actual)** — versión revisada y testada sobre Netlify, promovida como referencia funcional actual:
+  - Mantiene la base robusta de v2.1.
+  - Mejora legibilidad de recomendaciones y métricas.
+  - Consolida el botón Mono dentro del flujo principal de uso.
+  - Deja documentada la separación entre Sample Peak medido y True Peak pendiente de fase futura.
+  - Mantiene enfoque local, estático y sin dependencias.
 
-Esta iteración es la base de robustez previa a las fases mayores del *Roadmap*; no es la v2.0 de modularización, que llegará más adelante.
+Esta v3 es una versión funcional de producto/laboratorio. La futura **v2.0 de arquitectura** del roadmap se refiere a modularización interna, Web Worker y tests durante DAM; no debe confundirse con la numeración de iteraciones funcionales ya publicadas.
 
 ## Enfoque Vitalab Audio
 
@@ -96,6 +108,7 @@ VLA-73 es una herramienta orientativa.
 - No sustituye un medidor profesional certificado.
 - Las referencias de loudness deben entenderse como guías, no como reglas absolutas.
 - La medición de true peak validada por oversampling queda como mejora futura.
+- Los techos true-peak indicados son recomendaciones de entrega, no medición interna de esta versión.
 - El comportamiento puede variar según navegador y formato de archivo.
 - Archivos muy largos pueden requerir más tiempo de análisis.
 
@@ -104,14 +117,14 @@ VLA-73 es una herramienta orientativa.
 | Fase | Objetivo |
 | ---- | -------- |
 | v1 | Herramienta funcional de análisis y visualización |
-| v1.1 | Correcciones técnicas, métricas más claras y documentación honesta |
-| v1.2 | Mejoras de diagnóstico e informe |
-| v2.0 | Modularización, Web Worker y tests durante DAM |
+| v2.1 | Estabilización de estado, mono, LUFS mono/dual mono y PDF |
+| v3 | Versión revisada/testada y referencia funcional actual |
+| Arquitectura DAM | Modularización, Web Worker y tests durante DAM |
 | Pro | True Peak avanzado, comparador A/B, presets e informes profesionales |
 
 ## Estado del proyecto
 
-Proyecto funcional, desplegado online y en evolución. Versión publicada estable; iteración de estabilización (`vitalab-audio-mastering-v2.1.html`) en pruebas antes de promoverla a la demo.
+Proyecto funcional, desplegado online y en evolución. **VLA-73 v3** es la versión revisada y testada actualmente publicada en Netlify.
 
 ## Autor
 
