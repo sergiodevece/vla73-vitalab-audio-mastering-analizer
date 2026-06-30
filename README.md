@@ -6,9 +6,9 @@ La aplicación permite cargar un archivo de audio, analizar métricas técnicas 
 
 ## Demo online
 
-[Probar VLA-73 v3 en Netlify](https://vla-73-mastering-vitalab-audio-v3.netlify.app/)
+[DEMO · Probar VLA-73 v3 en Netlify](https://vla-73-mastering-vitalab-audio-v3.netlify.app/)
 
-Demo histórica anterior: [VLA-73 en Netlify](https://vla-73-mastering-vitalab-audio.netlify.app/)
+URL directa: https://vla-73-mastering-vitalab-audio-v3.netlify.app/
 
 ## Qué es
 
